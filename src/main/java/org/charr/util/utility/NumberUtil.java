@@ -3,7 +3,6 @@ package org.charr.util.utility;
 public interface NumberUtil {
 
     /**
-     *
      * @param inputString
      * @return
      */

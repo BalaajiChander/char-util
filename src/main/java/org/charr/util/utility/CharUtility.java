@@ -35,7 +35,7 @@ public class CharUtility implements CharUtil {
                 .filter(isEmpty.negate())
                 .filter(startsOrEndsWithEmpty.negate())
                 .filter(startsWithDigit.negate())
-                .filter(startsWithSpecialChar)
+                .filter(startsWithSpecialChar.negate())
                 .collect(Collectors.toList());
     }
 

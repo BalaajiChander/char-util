@@ -24,7 +24,7 @@ public class NumberUtility implements NumberUtil {
     public boolean containsNumberSequence(String inputString) {
         boolean hasNumberSequence = false;
         if (this.containsNumber(inputString)) {
-           hasNumberSequence = true;
+            hasNumberSequence = true;
         }
         return hasNumberSequence;
     }

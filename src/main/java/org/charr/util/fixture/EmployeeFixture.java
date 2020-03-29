@@ -20,7 +20,7 @@ public class EmployeeFixture {
         employee3.setFirstName("Sr. Name3");
 
         Employee employee4 = new Employee();
-        employee4.setFirstName("Dr");
+        employee4.setFirstName("Dr. ");
 
         Employee employee5 = new Employee();
         employee5.setFirstName("Jr.");
@@ -67,7 +67,29 @@ public class EmployeeFixture {
         employee18.setFirstName(" namewithmorethan30characterslength1 ");
 
         Employee employee19 = new Employee();
-        employee19.setFirstName(" namewithmorethan30characterslength2 ");
+        employee19.setFirstName("namewithmorethan30characterslength2");
+
+        employees.add(employee1);
+        employees.add(employee2);
+        employees.add(employee3);
+        employees.add(employee4);
+        employees.add(employee5);
+        employees.add(employee6);
+        employees.add(employee7);
+        employees.add(employee8);
+        employees.add(employee9);
+        employees.add(employee10);
+        employees.add(employee11);
+        employees.add(employee12);
+        employees.add(employee13);
+        employees.add(employee14);
+        employees.add(employee15);
+        employees.add(employee16);
+        employees.add(employee17);
+        employees.add(employee18);
+        employees.add(employee19);
+
+
     }
 
     /**
