@@ -24,17 +24,19 @@ public class CharUtility implements CharUtil {
     @Override
     public List<Employee> getValidEmployees(List<Employee> inputEmployees) {
 
-        final Predicate<Employee> isNull = employee -> null != employee.getFirstName();
+        final Predicate<Employee> isNotNull = employee -> null != employee.getFirstName();
         final Predicate<Employee> isEmpty = employee -> employee.getFirstName().isEmpty();
         final Predicate<Employee> startsOrEndsWithEmpty = employee -> employee.getFirstName().startsWith(" ") && employee.getFirstName().endsWith(" ");
         final Predicate<Employee> startsWithDigit = employee -> Character.isDigit(employee.getFirstName().charAt(0));
         final Predicate<Employee> startsWithSpecialChar = employee -> Pattern.compile("(^\\p{Punct})").matcher(String.valueOf(employee.getFirstName().charAt(0))).find();
+        final Predicate<Employee> isOnlyDigits = employee -> employee.getFirstName().matches("[0-9]+");
 
         return inputEmployees.stream()
-                .filter(isNull)
+                .filter(isNotNull)
                 .filter(isEmpty.negate())
                 .filter(startsOrEndsWithEmpty.negate())
                 .filter(startsWithDigit.negate())
+                .filter(isOnlyDigits.negate())
                 .filter(startsWithSpecialChar.negate())
                 .collect(Collectors.toList());
     }
