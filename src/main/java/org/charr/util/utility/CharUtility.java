@@ -102,12 +102,13 @@ public class CharUtility implements CharUtil {
         final Predicate<String> startsWithSpecialCharacter = s -> Pattern.compile("(^\\p{Punct})").matcher(String.valueOf(s.charAt(0))).find();
         final Predicate<String> isOnlyDigits = s -> s.matches("[0-9]+");
 
-        return strings.stream().filter(isNotNull)
+        return strings.stream()
+                .filter(isNotNull)
                 .filter(isEmpty.negate())
                 .filter(startsOrEndsWithEmpty.negate())
                 .filter(isDigit.negate())
-                .filter(startsWithSpecialCharacter)
-                .filter(isOnlyDigits)
+                .filter(startsWithSpecialCharacter.negate())
+                .filter(isOnlyDigits.negate())
                 .collect(Collectors.toList());
     }
 
