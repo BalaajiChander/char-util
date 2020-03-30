@@ -137,7 +137,7 @@ public class CharUtility implements CharUtil {
      */
     @Override
     public int getMinLengthAcrossStrings(List<String> strings) {
-        return this.getStringWithMaxLengthAcrossData(strings).length();
+        return this.getStringWithMinLengthAcrossData(strings).length();
     }
 
     /**
