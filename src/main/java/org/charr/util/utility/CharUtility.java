@@ -26,7 +26,7 @@ public class CharUtility implements CharUtil {
 
         final Predicate<Employee> isNotNull = employee -> null != employee.getFirstName();
         final Predicate<Employee> isEmpty = employee -> employee.getFirstName().isEmpty();
-        final Predicate<Employee> startsOrEndsWithEmpty = employee -> employee.getFirstName().startsWith(" ") && employee.getFirstName().endsWith(" ");
+        final Predicate<Employee> startsOrEndsWithEmpty = employee -> employee.getFirstName().startsWith(" ") || employee.getFirstName().endsWith(" ");
         final Predicate<Employee> startsWithDigit = employee -> Character.isDigit(employee.getFirstName().charAt(0));
         final Predicate<Employee> startsWithSpecialChar = employee -> Pattern.compile("(^\\p{Punct})").matcher(String.valueOf(employee.getFirstName().charAt(0))).find();
         final Predicate<Employee> isOnlyDigits = employee -> employee.getFirstName().matches("[0-9]+");
@@ -87,4 +87,76 @@ public class CharUtility implements CharUtil {
     public int getMaxLengthAcrossData(List<Employee> inputEmployees) {
         return this.getEmployeeWithMaxLengthAcrossData(inputEmployees).getFirstName().length();
     }
+
+    /**
+     * @param strings
+     * @return
+     */
+    @Override
+    public List<String> getValidString(List<String> strings) {
+
+        final Predicate<String> isNotNull = s -> null != s;
+        final Predicate<String> isEmpty = s -> s.isEmpty();
+        final Predicate<String> startsOrEndsWithEmpty = s -> s.startsWith(" ") || s.endsWith(" ");
+        final Predicate<String> isDigit = s -> Character.isDigit(s.charAt(0));
+        final Predicate<String> startsWithSpecialCharacter = s -> Pattern.compile("(^\\p{Punct})").matcher(String.valueOf(s.charAt(0))).find();
+        final Predicate<String> isOnlyDigits = s -> s.matches("[0-9]+");
+
+        return strings.stream().filter(isNotNull)
+                .filter(isEmpty.negate())
+                .filter(startsOrEndsWithEmpty.negate())
+                .filter(isDigit.negate())
+                .filter(startsWithSpecialCharacter)
+                .filter(isOnlyDigits)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @param strings
+     * @return
+     */
+    @Override
+    public List<String> getListOfStringWithMoreThan30Characters(List<String> strings) {
+        return this.getValidString(strings).stream().filter(s -> s.length() > 30).collect(Collectors.toList());
+    }
+
+    /**
+     * @param strings
+     * @return
+     */
+    @Override
+    public String getStringWithMinLengthAcrossData(List<String> strings) {
+        final Optional<String> min = this.getValidString(strings).stream().min(Comparator.comparing(s -> s.length()));
+        return min.isPresent() ? min.get() : "";
+    }
+
+    /**
+     * @param strings
+     * @return
+     */
+    @Override
+    public int getMinLengthAcrossStrings(List<String> strings) {
+        return this.getStringWithMaxLengthAcrossData(strings).length();
+    }
+
+    /**
+     * @param strings
+     * @return
+     */
+    @Override
+    public String getStringWithMaxLengthAcrossData(List<String> strings) {
+        final Optional<String> max = this.getValidString(strings).stream().max(Comparator.comparing(s -> s.length()));
+        return max.isPresent() ? max.get() : "";
+    }
+
+    /**
+     * @param strings
+     * @return
+     */
+    @Override
+    public int getMaxLengthAcrossStrings(List<String> strings) {
+        return this.getStringWithMaxLengthAcrossData(strings).length();
+    }
+
+
 }

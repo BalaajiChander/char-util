@@ -41,4 +41,47 @@ public interface CharUtil {
      * @return
      */
     abstract int getMaxLengthAcrossData(final List<Employee> inputEmployees);
+
+
+    /**
+     *
+     * @param strings
+     * @return
+     */
+    abstract List<String> getValidString(final List<String> strings);
+
+    /**
+     *
+     * @param strings
+     * @return
+     */
+    abstract List<String> getListOfStringWithMoreThan30Characters(final List<String> strings);
+
+    /**
+     *
+     * @param strings
+     * @return
+     */
+    abstract String getStringWithMinLengthAcrossData(final List<String> strings);
+
+    /**
+     *
+     * @param strings
+     * @return
+     */
+    abstract int getMinLengthAcrossStrings(final List<String> strings);
+
+    /**
+     *
+     * @param strings
+     * @return
+     */
+    abstract String getStringWithMaxLengthAcrossData(final List<String> strings);
+
+    /**
+     *
+     * @param strings
+     * @return
+     */
+    abstract int getMaxLengthAcrossStrings(final List<String> strings);
 }
